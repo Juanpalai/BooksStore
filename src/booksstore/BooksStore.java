@@ -19,29 +19,49 @@ import java.awt.event.WindowEvent;
 public class BooksStore extends Frame 
 {
     private TextField book;
-    private Button add;
-    private List list;
+    private Button add;    
+    private Button derecha;
+    private Button izquierda;
+    private Button clear;
+    private List enable;
+    private List disable;
     private Button remove;
     
     //--------------------------------------------------------------------------    
     
     public BooksStore()
     {
-        Panel p = new Panel(new BorderLayout());
+        Panel p1 = new Panel(new BorderLayout());
+        Panel p2 = new Panel(new BorderLayout());
+        Panel p3 = new Panel(new BorderLayout());
+        Panel p4 = new Panel(new BorderLayout());
         book    = new TextField();
         add     = new Button("Add");
-        list    = new List();
+        derecha     = new Button(">");
+        izquierda     = new Button("<");
+        clear     = new Button("Clear");
+        enable    = new List();
+        disable    = new List();
         remove  = new Button("Remove");
         
-        p.add(new Label("Tittle"), BorderLayout.WEST);
-        p.add( book,               BorderLayout.CENTER);
-        p.add(add,                 BorderLayout.EAST);
+        p1.add(new Label("Tittle"), BorderLayout.WEST);
+        p1.add( book,               BorderLayout.CENTER);
+        p1.add(add,                 BorderLayout.EAST);
         
-        add(p, BorderLayout.NORTH);
-        add(list, BorderLayout.CENTER);
-        add(remove,BorderLayout.SOUTH);
+        //p2.add(new Label("Enable"), BorderLayout.NORTH);
+        p2.add( enable,             BorderLayout.EAST);
         
-        setTitle("Book Register");
+        //p3.add(new Label("Disable"),BorderLayout.NORTH);
+        p2.add( disable,            BorderLayout.WEST);
+        
+        p4.add(remove); p4.add(derecha); p4.add(izquierda); p4.add(clear);
+        
+        add(p1, BorderLayout.NORTH);
+        add(p2, BorderLayout.CENTER);
+        add(p3, BorderLayout.CENTER);
+        add(p4, BorderLayout.SOUTH);
+        
+        setTitle("Book Store");
         setSize(400, 400);
         events();
         setVisible(true);
@@ -51,54 +71,14 @@ public class BooksStore extends Frame
     //--------------------------------------------------------------------------
     
     private void events()
-    {
-        //-----------Closing windows and system---------------------------------
-        addWindowListener( new WindowAdapter() 
-        {
-            public void windowClosing(WindowEvent e)
-            {
-                dispose();
-                System.exit(0);
-            }
-        });
-        
-        //----------------------------------------------------------------------
-        
-        add.addActionListener(new ActionListener()
-        {
-        public void actionPerformed(ActionEvent e) 
-        {
-          list.add(book.getText());
-          book.setText("");
-        }        
-        });
-        
-        //----------------------------------------------------------------------
-         remove.addActionListener(new ActionListener()
-         {
-             public void actionPerformed(ActionEvent e)
-             {
-                 list.remove(list.getSelectedIndex());
-             }
-         });
-         
-         //----------------------------------------------------------------------
-        
-        book.addActionListener(new ActionListener()
-        {
-        public void actionPerformed(ActionEvent e) 
-        {
-          list.add(book.getText());
-          book.setText("");
-        }        
-        });
+    {       
         
     }    
     //--------------------------------------------------------------------------
     
     public static void main(String[] args) 
     {
-        
+        new  BooksStore();
     }
     
 }
