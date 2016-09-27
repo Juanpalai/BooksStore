@@ -139,8 +139,8 @@ public class BooksStore extends Frame
         {
         public void actionPerformed(ActionEvent e) 
         {
-          enable.add(disable.getSelectedItem());
-          disable.remove(disable.getSelectedIndex());         
+          enable.removeAll();
+          disable.removeAll();
         }        
         });
         
